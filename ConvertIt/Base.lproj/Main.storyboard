@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,54 +22,98 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zow-e6-Aez">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zow-e6-Aez">
                                 <rect key="frame" x="249" y="37" width="110" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="uUO-mD-P3z">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="uUO-mD-P3z">
                                 <rect key="frame" x="56" y="32" width="185" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="185" id="cBN-OX-DJh"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PXk-Km-cWG">
-                                <rect key="frame" x="87" y="378" width="200" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PXk-Km-cWG">
+                                <rect key="frame" x="87" y="382" width="200" height="30"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Convert">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="convertButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T03-Kl-41I"/>
-                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUe-eW-vN5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUe-eW-vN5">
                                 <rect key="frame" x="16" y="66" width="343" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="N6U-KQ-oZW"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Conversion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKt-WV-gdm">
-                                <rect key="frame" x="87" y="126" width="200" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Conversion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKt-WV-gdm">
+                                <rect key="frame" x="87" y="126.5" width="200" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Uo-Z9-GoS">
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Uo-Z9-GoS">
                                 <rect key="frame" x="16" y="155" width="343" height="180"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="tys-7W-aQV"/>
+                                </constraints>
                             </pickerView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="i3C-1e-poU">
+                                <rect key="frame" x="16" y="347" width="343" height="28"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rounding:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFS-Kx-0eM">
+                                        <rect key="frame" x="0.0" y="0.0" width="77.5" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FiI-sf-zLh">
+                                        <rect key="frame" x="87.5" y="0.0" width="255.5" height="29"/>
+                                        <segments>
+                                            <segment title="0.0"/>
+                                            <segment title="0.00"/>
+                                            <segment title="0.000"/>
+                                            <segment title="none"/>
+                                        </segments>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </segmentedControl>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Zow-e6-Aez" firstAttribute="leading" secondItem="uUO-mD-P3z" secondAttribute="trailing" constant="8" symbolic="YES" id="0aK-8I-R4i"/>
+                            <constraint firstItem="uUO-mD-P3z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="1wu-cI-sdC"/>
+                            <constraint firstItem="8Uo-Z9-GoS" firstAttribute="centerX" secondItem="OKt-WV-gdm" secondAttribute="centerX" id="30v-dK-I5A"/>
+                            <constraint firstItem="8Uo-Z9-GoS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="155" id="4m0-2J-NSi"/>
+                            <constraint firstItem="EUe-eW-vN5" firstAttribute="top" secondItem="uUO-mD-P3z" secondAttribute="bottom" constant="4" id="50z-MI-zqt"/>
+                            <constraint firstItem="OKt-WV-gdm" firstAttribute="top" secondItem="EUe-eW-vN5" secondAttribute="bottom" constant="9" id="7t8-Br-cbd"/>
+                            <constraint firstItem="EUe-eW-vN5" firstAttribute="top" secondItem="Zow-e6-Aez" secondAttribute="bottom" constant="8" symbolic="YES" id="8fK-S4-Edi"/>
+                            <constraint firstItem="8Uo-Z9-GoS" firstAttribute="trailing" secondItem="Zow-e6-Aez" secondAttribute="trailing" id="Cyx-oz-Ewi"/>
+                            <constraint firstItem="i3C-1e-poU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="N7C-PV-U7d"/>
+                            <constraint firstItem="8Uo-Z9-GoS" firstAttribute="leading" secondItem="EUe-eW-vN5" secondAttribute="leading" id="NY0-tv-BB3"/>
+                            <constraint firstItem="8Uo-Z9-GoS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Obz-V5-cAd"/>
+                            <constraint firstItem="PXk-Km-cWG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q1s-dQ-c1t"/>
+                            <constraint firstItem="8Uo-Z9-GoS" firstAttribute="centerX" secondItem="PXk-Km-cWG" secondAttribute="centerX" id="Wrq-Rr-aUW"/>
+                            <constraint firstItem="PXk-Km-cWG" firstAttribute="top" secondItem="i3C-1e-poU" secondAttribute="bottom" constant="7" id="cGN-Nz-D9S"/>
+                            <constraint firstItem="8Uo-Z9-GoS" firstAttribute="trailing" secondItem="i3C-1e-poU" secondAttribute="trailing" id="ctx-x2-A9w"/>
+                            <constraint firstItem="PXk-Km-cWG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="71" id="g4H-kJ-bxN"/>
+                            <constraint firstItem="i3C-1e-poU" firstAttribute="top" secondItem="8Uo-Z9-GoS" secondAttribute="bottom" constant="12" id="oqb-lr-MmA"/>
+                            <constraint firstItem="8Uo-Z9-GoS" firstAttribute="trailing" secondItem="EUe-eW-vN5" secondAttribute="trailing" id="qSH-4K-AO6"/>
+                            <constraint firstItem="PXk-Km-cWG" firstAttribute="leading" secondItem="OKt-WV-gdm" secondAttribute="leading" id="vdZ-p4-cYn"/>
+                            <constraint firstItem="8Uo-Z9-GoS" firstAttribute="top" secondItem="OKt-WV-gdm" secondAttribute="bottom" constant="8" symbolic="YES" id="z13-c4-HYP"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="decimalSegment" destination="FiI-sf-zLh" id="AfS-kP-v4Y"/>
                         <outlet property="formulaPicker" destination="8Uo-Z9-GoS" id="ztg-F4-aOI"/>
                         <outlet property="fromUnitsLabel" destination="Zow-e6-Aez" id="gbK-mH-m4h"/>
                         <outlet property="resultsLabel" destination="EUe-eW-vN5" id="gXb-os-BMl"/>
