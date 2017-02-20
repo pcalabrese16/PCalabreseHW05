@@ -10,13 +10,11 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    
     @IBOutlet weak var userInput: UITextField!
     @IBOutlet weak var resultsLabel: UILabel!
     @IBOutlet weak var fromUnitsLabel: UILabel!
     @IBOutlet weak var formulaPicker: UIPickerView!
     @IBOutlet weak var decimalSegment: UISegmentedControl!
-    
     
     var formulasArray = ["miles to kilometers",
                          "kilometers to miles",
@@ -44,34 +42,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
-    //MARK:- Delegates and Data Sources, Required Methods for UIPickerView
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return formulasArray.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return formulasArray[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        conversionString = formulasArray[row]
-        let unitsArray = formulasArray[row].components(separatedBy: " to ")
-        
-        fromUnits = unitsArray[0]
-        toUnits = unitsArray[1]
-        fromUnitsLabel.text = fromUnits
-        // resultsLabel.text = toUnits
-        calculateConversion()
-        
-    }
     
     func showAlert() {
         let alertController = UIAlertController(title: "Entry Error", message: "Please enter a valid number. Not an empty string, no commas, symbols, or non-numeric characters", preferredStyle: .alert)
@@ -117,21 +87,50 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             outputString = String(outputValue)
         }
         
-        
-        
         resultsLabel.text = "\(userInput.text!) \(fromUnits) = \(outputString) \(toUnits)"
+    }
     
     
+    //MARK:- Delegates and Data Sources, Required Methods for UIPickerView
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return formulasArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return formulasArray[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        conversionString = formulasArray[row]
+        let unitsArray = formulasArray[row].components(separatedBy: " to ")
+        
+        fromUnits = unitsArray[0]
+        toUnits = unitsArray[1]
+        fromUnitsLabel.text = fromUnits
+        // resultsLabel.text = toUnits
+        calculateConversion()
+    }
+
     
     //MARK:- @IBActions
         
-        
+    @IBAction func convertButtonPressed(_ sender: UIButton) {
+        calculateConversion()
+    }
+    
+    @IBAction func decimalSelected(_ sender: UISegmentedControl) {
+        calculateConversion()
+    }
     
      
         
         
         
         
-}
 }
