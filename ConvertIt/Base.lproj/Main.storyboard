@@ -93,6 +93,18 @@
                                     </segmentedControl>
                                 </subviews>
                             </stackView>
+                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gFb-Tw-7B1">
+                                <rect key="frame" x="16" y="34" width="32" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="+"/>
+                                    <segment title="-"/>
+                                </segments>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="posNegPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="PcA-OT-NKL"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -122,6 +134,7 @@
                         <outlet property="decimalSegment" destination="FiI-sf-zLh" id="AfS-kP-v4Y"/>
                         <outlet property="formulaPicker" destination="8Uo-Z9-GoS" id="ztg-F4-aOI"/>
                         <outlet property="fromUnitsLabel" destination="Zow-e6-Aez" id="gbK-mH-m4h"/>
+                        <outlet property="posNeg" destination="gFb-Tw-7B1" id="SNY-xk-V7u"/>
                         <outlet property="resultsLabel" destination="EUe-eW-vN5" id="gXb-os-BMl"/>
                         <outlet property="userInput" destination="uUO-mD-P3z" id="HjV-MN-fB1"/>
                     </connections>
