@@ -10,6 +10,13 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
+    struct Formula {
+        var conversionString: String
+        var formula: (Double) -> Double
+    }
+    
+    
+    
     
     // MARK:- Properties:
     @IBOutlet weak var userInput: UITextField!
@@ -19,22 +26,24 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var decimalSegment: UISegmentedControl!
     @IBOutlet weak var posNeg: UISegmentedControl!
     
-    var formulasArray = ["miles to kilometers",
-                         "kilometers to miles",
-                         "feet to meters",
-                         "yards to meters",
-                         "meters to feet",
-                         "meters to yards",
-                         "inches to centimeters",
-                         "centimeters to inches",
-                         "fahrenheit to celsius",
-                         "celsius to fahrenheit",
-                         "quarts to liters",
-                         "liters to quarts"]
+    
+    let formulasArray = [Formula(conversionString: "miles to kilometers", formula: {$0 / 0.62137}),
+                        Formula(conversionString: "kilometers to miles", formula: {$0 * 0.62137}),
+                        Formula(conversionString: "feet to meters", formula: {$0 / 3.2808}),
+                        Formula(conversionString: "yards to meters", formula: {$0 / 1.0936}),
+                        Formula(conversionString: "meters to feet", formula: {$0 * 3.2808}),
+                        Formula(conversionString: "meters to yards", formula: {$0 * 1.0936}),
+                        Formula(conversionString: "inches to centimeters", formula: {$0 / 0.39370}),
+                        Formula(conversionString: "centimeters to inches", formula: {$0 * 0.39370}),
+                        Formula(conversionString: "fahrenheit to celsius", formula: {($0 - 32) * (5/9)}),
+                        Formula(conversionString: "celsius to fahrenheit", formula: {$0 * (9/5) + 32}),
+                        Formula(conversionString: "quarts to liters", formula: {$0 / 1.05669}),
+                        Formula(conversionString: "liters to quarts", formula: {$0 * 1.05669})]
     
     var toUnits = ""
     var fromUnits = ""
     var conversionString = ""
+    var rowSelected = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +53,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         formulaPicker.delegate = self
         userInput.delegate = self
         
-        conversionString = formulasArray[0]
-        
+        conversionString = formulasArray[0].conversionString
+        assignUnits()
         userInput.becomeFirstResponder()
     }
     
@@ -56,8 +65,17 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     
-    func showAlert() {
-        let alertController = UIAlertController(title: "Entry Error", message: "Please enter a valid number. Not an empty string, no commas, symbols, or non-numeric characters", preferredStyle: .alert)
+    
+    func assignUnits() {
+        let unitsArray = conversionString.components(separatedBy: " to ")
+        
+        fromUnits = unitsArray[0]
+        toUnits = unitsArray[1]
+        fromUnitsLabel.text = fromUnits
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         
@@ -77,45 +95,17 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         posNeg.selectedSegmentIndex = 0
         return true
     }
-    
+
     
     func calculateConversion() {
-        
         var inputValue = 0.0
         var outputValue = 0.0
         var outputString = ""
         
         if let inputValue = Double(userInput.text!) {
-            switch conversionString {
-            case "miles to kilometers":
-                outputValue = inputValue / 0.62137
-            case "kilometers to miles":
-                outputValue = inputValue * 0.62137
-            case "feet to meters":
-                outputValue = inputValue / 3.2808
-            case "yards to meters":
-                outputValue = inputValue / 1.0936
-            case "meters to feet":
-                outputValue = inputValue * 3.2808
-            case "meters to yards":
-                outputValue = inputValue * 1.0936
-            case "inches to centimeters":
-                outputValue = inputValue / 0.39370
-            case "centimeters to inches":
-                outputValue = inputValue * 0.39370
-            case "fahrenheit to celsius":
-                outputValue = (inputValue - 32) * (5/9)
-            case "celsius to fahrenheit":
-                outputValue = inputValue * (9/5) + 32
-            case "quarts to liters":
-                outputValue = inputValue / 1.05669
-            case "liters to quarts":
-                outputValue = inputValue * 1.05669
-            default:
-                showAlert()
-            }
+            outputValue = formulasArray[rowSelected].formula(inputValue)
         } else {
-            showAlert()
+            showAlert(title: "Error", message: "Please be sure to only enter numbers. No commas, symbols, or non-numeric characters")
         }
         
         if decimalSegment.selectedSegmentIndex < 3 {
@@ -126,6 +116,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         resultsLabel.text = "\(userInput.text!) \(fromUnits) = \(outputString) \(toUnits)"
     }
+    
+    
+    
+    
     
     
     //MARK:- Delegates and Data Sources, Required Methods for UIPickerView
@@ -140,18 +134,17 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return formulasArray[row]
+        return formulasArray[row].conversionString
     }
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        conversionString = formulasArray[row]
-        let unitsArray = formulasArray[row].components(separatedBy: " to ")
         
-        fromUnits = unitsArray[0]
-        toUnits = unitsArray[1]
-        fromUnitsLabel.text = fromUnits
+        rowSelected = row
+        conversionString = formulasArray[row].conversionString
+        
+        assignUnits()
         
         if conversionString == "fahrenheit to celsius" || conversionString == "celsius to fahrenheit" {
             posNeg.isHidden = false
@@ -166,6 +159,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }
     }
 
+    
+    
+    
     
     //MARK:- @IBActions
     @IBAction func convertButtonPressed(_ sender: UIButton) {
